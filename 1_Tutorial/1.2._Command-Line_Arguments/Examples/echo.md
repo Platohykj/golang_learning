@@ -1,8 +1,8 @@
-# echo1
+# echo
 
-本程序是Unix中`echo`命令的一个简单实现，它打印出其命令行参数。
+[`echo1.go`](./echo1/echo1.go)是Unix中`echo`命令的一个简单实现，它打印出其命令行参数。
 
-```go echo1.go
+```go
 package main
 
 import (
