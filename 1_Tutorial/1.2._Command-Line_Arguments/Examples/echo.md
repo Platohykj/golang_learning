@@ -26,7 +26,7 @@ func main() {
 在go程序中，命令行参数是通过`os`包中的`Args`变量获取的。
 `os.Args`是一个字符串切片，其中第一个元素是程序的名字，随后的元素是程序的参数。
 
-在`echo1`程序中，`os.Args`的第一个元素是程序的名字，所以我们从`os.Args[1]`开始遍历，将所有参数拼接到一个字符串中。
+在[`echo1.go`](./echo1/echo1.go)程序中，`os.Args`的第一个元素是程序的名字，所以我们从`os.Args[1]`开始遍历，将所有参数拼接到一个字符串中。
 
 ```go
 for i := 1; i < len(os.Args); i++ {
@@ -45,7 +45,7 @@ for i := 1; i < len(os.Args); i++ {
 
 ## 程序结构
 
-在这个例程中，我们使用了`package`、`import`、`func`、`var`、`for`、`fmt.Println`等关键字。
+在这个例程中，我们使用了`package`、`import`、`func`、`for`等关键字。
 
 ### package
 ```go
@@ -161,3 +161,45 @@ for {
 ```
 
 可以使用`break`和`return`语句来退出循环。
+
+## `for`循环的另一种形式
+
+见[`echo2.go`](./echo2/echo2.go)。
+
+```go
+// Echo2 prints its command-line arguments.
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	s, sep := "", ""
+	for _, arg := range os.Args[1:] {
+		s += sep + arg
+		sep = " "
+	}
+	fmt.Println(s)
+}
+```
+
+在本例中`for`循环在某种数据类型的区间（range）上遍历，如字符或切片。
+`range`关键字返回两个值，第一个是索引，第二个是索引对应的值。
+`range`关键字规定要处理元素，则必须处理索引。
+那么，就有一种可能使用临时变量存储索引然后忽略它。
+
+```go
+for i, arg := range os.Args[1:] {
+    s += sep + arg
+    sep = " "
+}
+```
+
+然而，go语言不允许使用无用的局部变量，如果使用则会导致编译错误。
+在本例中。我们不需要索引，所以用`_` ***（空标识符）*** 忽略索引。
+
+空标识符`_` 可以用来忽略值，这样可以避免声明不需要的变量。
+
+## 短变量声明 `:=`

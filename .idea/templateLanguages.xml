@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="TemplateDataLanguageMappings">
-    <file url="file://$PROJECT_DIR$/1_Tutorial/1.1_Hello_World/Examples/Hello_world/Hello_world.md" dialect="go" />
+    <file url="file://$PROJECT_DIR$/1_Tutorial/1.1_Hello_World/Examples/Hello_world.md" dialect="go" />
     <file url="file://$PROJECT_DIR$/README.md" dialect="Markdown" />
   </component>
 </project>
