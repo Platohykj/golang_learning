@@ -9,6 +9,10 @@
 │   └───inspectionProfiles
 └───1_Tutorial
     ├───1.1_Hello_World
+    │   └───Examples
+    │       └───Hello_world
     └───1.2._Command-Line_Arguments
+        └───Examples
+            └───echo1
 ```
 
