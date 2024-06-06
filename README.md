@@ -17,5 +17,9 @@
         │   ├───echo2
         │   └───echo3
         └───Exercises
+            ├───Exercise_1.1
+            ├───Exercise_1.2
+            └───Exercise_1.3
+
 ```
 
