@@ -12,7 +12,10 @@
     │   └───Examples
     │       └───Hello_world
     └───1.2._Command-Line_Arguments
-        └───Examples
-            └───echo1
+        ├───Examples
+        │   ├───echo1
+        │   ├───echo2
+        │   └───echo3
+        └───Exercises
 ```
 
