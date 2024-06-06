@@ -96,4 +96,4 @@ func main() {
 在循环中，我们将`os.Args[i]`添加到`s`中，然后将`sep`设置为空格。这样，我们就可以将所有参数拼接到一个字符串中。
 
 最后，我们使用`fmt.Println(s)`打印出拼接结果。
-[echo1](echo1.go)
+[echo1](../../1.1_Hello_World/Examples/Hello_world/README.md)
