@@ -23,8 +23,10 @@
     └───1.3_Finding_Duplicate_Lines
         ├───Examples
         │   ├───dup1
-        │   └───dup2
+        │   ├───dup2
+        │   └───dup3
         └───Exercises
             └───Exercise_1.4
+
 ```
 
