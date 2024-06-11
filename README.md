@@ -27,6 +27,5 @@
         │   └───dup3
         └───Exercises
             └───Exercise_1.4
-
 ```
 

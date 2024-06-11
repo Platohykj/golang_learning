@@ -71,6 +71,11 @@ input := bufio.NewScanner(os.Stdin)
 counts := make(map[string]int)
 ```
 
+`map` 是一个由 `make` 函数创建的数据结构的**引用**。
+`map` 作为参数传递给某函数时，该函数接收这个**引用的一份拷贝**（copy，或译为副本），
+被调用函数对 `map` 底层数据结构的任何修改，调用者函数都可以通过持有的 `map` 引用看到。
+在我们的例子中，`countLines` 函数向 `counts` 插入的值，也会被 `main` 函数看到。
+
 `counts`是一个`map`类型的变量，用于存储行的计数。
 
 `map`是一种无序的键值对集合，`map`的键是唯一的，`map`的值可以是任意类型。
@@ -220,3 +225,74 @@ if err != nil {
 如果`err`等于内置值`nil`（相当于其他语言中的`NULL`），则表示文件被成功打开。
 
 如果`err`值不是`nil`，则表示文件打开失败，我们可以通过`fmt.Fprintf`函数将错误信息输出到标准错误输出。
+
+```go
+    fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
+```
+
+### countLines
+
+`countLines` 函数在其声明前被调用。
+函数和包级别的变量（package-level entities）可以任意顺序声明，并不影响其被调用。
+
+## dup3
+
+[dup1.go](./dup1/dup1.go)和[dup2.go](./dup2/dup2.go)程序都是一次性读取所有输入，然后处理输入。
+
+[dup3.go](./dup3/dup3.go)程序则是一次性读取所有输入到内存中，一次分割为多行，然后处理输入。
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "os"
+    "strings"
+)
+
+func main() {
+    counts := make(map[string]int)
+    for _, filename := range os.Args[1:] {
+        data, err := ioutil.ReadFile(filename)
+        if err != nil {
+            fmt.Fprintf(os.Stderr, "dup3: %v\n", err)
+            continue
+        }
+        for _, line := range strings.Split(string(data), "\n") {
+            counts[line]++
+        }
+    }
+    for line, n := range counts {
+        if n > 1 {
+            fmt.Printf("%d\t%s\n", n, line)
+        }
+    }
+}
+```
+`ReadFile` 函数需要文件名作为参数，因此只读指定文件，不读标准输入。
+
+### ioutil.ReadFile
+
+```go
+data, err := ioutil.ReadFile(filename)
+```
+
+`ioutil.ReadFile`函数读取文件的所有内容，返回两个值，第一个值是文件的内容，第二个值是错误信息。
+
+在这个例程中，我们使用`ioutil.ReadFile`函数读取文件的内容，然后将文件的内容存储到`data`中。
+
+### strings.Split
+
+```go
+for _, line := range strings.Split(string(data), "\n") {
+    counts[line]++
+}
+```
+
+`strings.Split`函数将字符串分割为多个子字符串，返回一个字符串的切片。
+
+在这个例程中，我们使用`strings.Split`函数将文件的内容分割为多行，然后将行的计数存储到`counts`中。
+
+`Split` 的作用与前文提到的 `strings.Join` 相反。
+
