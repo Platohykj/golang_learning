@@ -1,5 +1,6 @@
 # dup
 
+## dup1
 基于`Unix`系统的`uniq`命令，我们可以编写一个`Go`程序来查找重复的行。
 
 [dup1.go](./dup1/dup1.go)程序读取标准输入，然后输出重复的行。
@@ -39,7 +40,7 @@ linux
 echo "a\nb\nc\na\nb\na" | go run dup1.go
 ```
 
-## import
+### import
 
 ```go
 package main
@@ -54,7 +55,7 @@ import (
 
 其中，`bufio`包提供了缓冲读取功能，`fmt`包提供了格式化输入输出功能，`os`包提供了操作系统函数。
 
-## bufio.NewScanner
+### bufio.NewScanner
 
 ```go
 input := bufio.NewScanner(os.Stdin)
@@ -64,7 +65,7 @@ input := bufio.NewScanner(os.Stdin)
 
 `bufio.Scanner`类型的值可以通过`Scan`方法读取数据，`Scan`方法在读取数据时会自动去掉行尾的换行符。
 
-## map
+### map
 
 ```go
 counts := make(map[string]int)
@@ -76,7 +77,7 @@ counts := make(map[string]int)
 
 在这个例程中，`counts`的键是行的内容，`counts`的值是行的计数。
 
-## input.Scan
+### input.Scan
 
 ```go
 for input.Scan() {
@@ -88,7 +89,7 @@ for input.Scan() {
 
 在这个例程中，我们使用`for`循环读取所有行，然后将行的计数存储到`counts`中。
 
-## input.Text()
+### input.Text()
 
 ```go
 counts[input.Text()]++
@@ -99,7 +100,7 @@ counts[input.Text()]++
 
 首次读到新行时，`counts[input.Text()]`的值为`0`，`counts[input.Text()]++`的值为`1`。
 
-## for line, n := range counts
+### for line, n := range counts
 
 ```go
 for line, n := range counts {
@@ -126,7 +127,7 @@ for line, n := range counts {
 | %T         | 变量的类型                                        |
 | %%         | 字面上的百分号标志（无操作数）                              |
 
-## 转义字符
+### 转义字符
 
 在Go语言中，字符串中的转义字符有以下几种：
 
@@ -148,3 +149,4 @@ for line, n := range counts {
 | \xhh | 十六进制字符 |
 
 按照惯例，以字母`ln`结尾的格式化函数采用`fmt.Println`的格式化准则，以字母`f`结尾的格式化函数采用`fmt.Fprintf`的格式化准则。
+
