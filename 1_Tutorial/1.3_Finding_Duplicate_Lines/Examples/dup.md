@@ -87,3 +87,42 @@ for input.Scan() {
 `input.Scan`方法读取下一行数据，如果读取成功，则返回`true`，否则返回`false`。
 
 在这个例程中，我们使用`for`循环读取所有行，然后将行的计数存储到`counts`中。
+
+## input.Text()
+
+```go
+counts[input.Text()]++
+```
+`input.Text()`方法返回最近一次读取的行。
+
+在这个例程中，我们使用`input.Text()`方法获取行的内容，然后将行的计数存储到`input.Text()`对应的值中
+
+首次读到新行时，`counts[input.Text()]`的值为`0`，`counts[input.Text()]++`的值为`1`。
+
+## for line, n := range counts
+
+```go
+for line, n := range counts {
+    if n > 1 {
+        fmt.Printf("%d\t%s\n", n, line)
+    }
+}
+```
+
+`for line, n := range counts`循环遍历`counts`中的所有键值对，并格式化输出
+
+其中，`\t` `\n`被Go程序员称之为动词，下面的表格列出了常见的动词：
+
+| 动词         | 说明                                           |
+|------------|----------------------------------------------|
+| %d         | 十进制整数                                        |
+| %x, %o, %b | 十六进制，八进制，二进制整数                               |
+| %f, %g, %e | 浮点数： 3.141593 3.141592653589793 3.141593e+00 |
+| %t         | 布尔：true或false                                |
+| %c         | 字符（rune） (Unicode码点)                         |
+| %s         | 字符串                                          |
+| %q         | 带双引号的字符串 "abc" 或 带单引号的字符 'c'                 |
+| %v         | 变量的自然形式（natural format）                      |
+| %T         | 变量的类型                                        |
+| %%         | 字面上的百分号标志（无操作数）                              |
+
