@@ -20,12 +20,19 @@
     │       ├───Exercise_1.1
     │       ├───Exercise_1.2
     │       └───Exercise_1.3
-    └───1.3_Finding_Duplicate_Lines
+    ├───1.3_Finding_Duplicate_Lines
+    │   ├───Examples
+    │   │   ├───dup1
+    │   │   ├───dup2
+    │   │   └───dup3
+    │   └───Exercises
+    │       └───Exercise_1.4
+    └───1.4_Animated_GIFs
         ├───Examples
-        │   ├───dup1
-        │   ├───dup2
-        │   └───dup3
+        │   └───lissajous
         └───Exercises
-            └───Exercise_1.4
+            ├───Exercises_1.5
+            └───Exercises_1.6
+
 ```
 
