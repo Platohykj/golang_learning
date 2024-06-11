@@ -150,3 +150,73 @@ for line, n := range counts {
 
 按照惯例，以字母`ln`结尾的格式化函数采用`fmt.Println`的格式化准则，以字母`f`结尾的格式化函数采用`fmt.Fprintf`的格式化准则。
 
+## dup2
+
+[dup2.go](./dup2/dup2.go)程序读取文件，然后输出重复的行。
+
+```go
+// Dup2 prints the count and text of lines that appear more than once
+// in the input.  It reads from stdin or from a list of named files.
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+)
+
+func main() {
+    counts := make(map[string]int)
+    files := os.Args[1:]
+    if len(files) == 0 {
+        countLines(os.Stdin, counts)
+    } else {
+        for _, arg := range files {
+            f, err := os.Open(arg)
+            if err != nil {
+                fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
+                continue
+            }
+            countLines(f, counts)
+            f.Close()
+        }
+    }
+    for line, n := range counts {
+        if n > 1 {
+            fmt.Printf("%d\t%s\n", n, line)
+        }
+    }
+}
+
+func countLines(f *os.File, counts map[string]int) {
+    input := bufio.NewScanner(f)
+    for input.Scan() {
+        counts[input.Text()]++
+    }
+    // NOTE: ignoring potential errors from input.Err()
+}
+```
+### os.Open
+
+```go
+f, err := os.Open(arg)
+```
+
+`os.Open`函数打开一个文件，返回两个值，第一个值是被打开的文件`*os.File`,其后被`Scanner`获取，第二个值是错误信息。
+
+在这个例程中，我们使用`os.Open`函数打开文件，然后将文件的内容存储到`f`中。
+
+### error
+
+```go
+if err != nil {
+    fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
+    continue
+}
+```
+
+`os.Open`函数打开文件失败时，会返回一个错误信息,为内置的`error`类型。
+
+如果`err`等于内置值`nil`（相当于其他语言中的`NULL`），则表示文件被成功打开。
+
+如果`err`值不是`nil`，则表示文件打开失败，我们可以通过`fmt.Fprintf`函数将错误信息输出到标准错误输出。
