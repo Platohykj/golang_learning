@@ -1,5 +1,7 @@
 # lissajous
 
+**注意：该程序无法在Powershell中运行。**
+
 接下来的程序生成一个GIF
 
 ![lissajous](./img/lissajous.gif)
