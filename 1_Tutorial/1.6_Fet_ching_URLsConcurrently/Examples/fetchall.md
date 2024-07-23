@@ -45,6 +45,20 @@ func fetch(url string, ch chan<- string) {
     secs := time.Since(start).Seconds()
     ch <- fmt.Sprintf("%.2fs  %7d  %s", secs, nbytes, url)
 }
-
 ```
 
+## gorutine
+
+`goroutine`是Go语言并发编程的基本单元,相当于一种轻量化的线程。
+
+`go`关键字会创建一个新的`goroutine`，并在这个`goroutine`中执行函数。main函数本身也运行在一个`goroutine`中。
+
+## channel
+
+`channel`是Go语言并发编程的通信机制，可以让`goroutine`之间进行通信。
+
+## 通信阻塞机制
+
+当一个 goroutine 尝试向一个 channel 发送数据时，如果没有其他 goroutine 正在从这个 channel 接收数据，那么发送操作会阻塞，直到有一个 goroutine 开始接收数据。同理，当一个 goroutine 尝试从一个 channel 接收数据时，如果没有其他 goroutine 向这个 channel 发送数据，那么接收操作会阻塞，直到有数据被发送到 channel。
+
+通信阻塞机制较好的防止了有两个`goroutine`同时访问共享数据的情况，避免了数据竞争。
