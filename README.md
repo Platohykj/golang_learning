@@ -9,9 +9,11 @@
 │   └───inspectionProfiles
 └───1_Tutorial
     ├───1.1_Hello_World
-    ├───1.2._Command-Line_Arguments
+    ├───1.2_Command-Line_Arguments
     ├───1.3_Finding_Duplicate_Lines
     ├───1.4_Animated_GIFs
-    └───1.5_Fet_ching_a_URL
+    ├───1.5_Fetching_a_URL
+    ├───1.6_Fetching_URLsConcurrently
+    └───1.7_A_Web_Server
 ```
 
